@@ -43,8 +43,6 @@ COR = 0x9910CD
 client = discord.Client()
 
 
-credentials = compute_engine.Credentials()
-translate_client = translate.Client.from_service_account_json('auth.json')
 #comandos para deixar o bot online
 
 @client.event
