@@ -9,7 +9,6 @@ import requests
 import json
 import wikipedia
 wikipedia.exceptions
-from tkinter import*
 import io
 from pymongo import MongoClient
 from pyfiglet import Figlet
@@ -775,19 +774,7 @@ async def on_message(message):
         await client.edit_channel_permissions(message.channel, membro, fechado)
         await client.send_message(message.channel, "O canal foi fechado para membros, satisfeito?!")
 ###############################################################################################
-    janela = Tk()
-    janela.title('oi')  # titulo da tela
 
-    janela['bg'] = 'green'  # cor da tela
-
-    # LxA+E+T
-    # 300x300+100+100          300x300 = altura  +100+100 = posição
-    janela.geometry('800x300+0+1')  # altura largura e posisionamento de janela
-
-    texto1 = Label(text='texto', font='40')  # font = fonte e altura
-    botão1 = Button(text='botao')
-
-    ########################################################################################################################
     prefix = "gb!"
     if message.content.startswith(prefix + "ban"):
         if not message.author.server_permissions.ban_members:
