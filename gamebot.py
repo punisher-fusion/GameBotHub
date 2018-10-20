@@ -1148,6 +1148,8 @@ async def on_message(message):
             await client.add_reaction(message, '✂')
 
 
+	   if message.content.startswith("gb!k"):
+        await client.delete_message('Está funcionando o GitHub!')
 ################     ###################
 #                    #                 #
 #                    #                 #
