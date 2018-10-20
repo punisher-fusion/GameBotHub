@@ -1,6 +1,4 @@
 import discord
-from google.cloud import translate
-from google.auth import compute_engine
 import asyncio
 import random
 import time
