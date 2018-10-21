@@ -1147,8 +1147,8 @@ async def on_message(message):
             await client.add_reaction(message, '✂')
 
 	    if message.content.startswith('gb!heroku'):
-        embed = discord.Embed(colour=0xFF0000, description='Conectado com GitHub e Heroku')
-        await client.send_message(message.channel, embed=embed)
+			embed = discord.Embed(colour=0xFF0000, description='Conectado com GitHub e Heroku')
+			await client.send_message(message.channel, embed=embed)
 
 ################     ###################
 #                    #                 #
