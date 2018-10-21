@@ -8,21 +8,7 @@ import json
 import wikipedia
 wikipedia.exceptions
 import io
-from pymongo import MongoClient
-from pyfiglet import Figlet
 import os
-
-weeks = 0
-days = 0
-hours = 0
-minutes = 0
-seconds = 0
-prefixo = 'gb!'
-
-dbclient = MongoClient('mongodb://iFusion:kicera74@ds027748.mlab.com:27748/gamebot')
-db = dbclient['gamebot-db']
-collection = db['gamebotcollection ']
-
 
 tempo = []
 
@@ -326,7 +312,7 @@ async def on_message(message):
                                   ", tão tá né então toma o horário do {} **{}".format(message.server.region, horario))
         await client.send_message(message.channel,
                                   "**Esta hora e de acordo com a localização do servidor, no caso desse servidor a loca"
-                                  "lização dele e {}".format(
+                                  "lização dele e** {}".format(
                                       message.server.region))
 
     if message.content.startswith('gb!denunciar'):
