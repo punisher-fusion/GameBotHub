@@ -1,4 +1,6 @@
 import discord
+from google.cloud import translate
+from google.auth import compute_engine
 import asyncio
 import random
 import time
@@ -7,6 +9,7 @@ import requests
 import json
 import wikipedia
 wikipedia.exceptions
+from tkinter import*
 import io
 from pymongo import MongoClient
 from pyfiglet import Figlet
@@ -43,6 +46,8 @@ COR = 0x9910CD
 client = discord.Client()
 
 
+credentials = compute_engine.Credentials()
+translate_client = translate.Client.from_service_account_json('auth.json')
 #comandos para deixar o bot online
 
 @client.event
@@ -770,7 +775,19 @@ async def on_message(message):
         await client.edit_channel_permissions(message.channel, membro, fechado)
         await client.send_message(message.channel, "O canal foi fechado para membros, satisfeito?!")
 ###############################################################################################
+    janela = Tk()
+    janela.title('oi')  # titulo da tela
 
+    janela['bg'] = 'green'  # cor da tela
+
+    # LxA+E+T
+    # 300x300+100+100          300x300 = altura  +100+100 = posição
+    janela.geometry('800x300+0+1')  # altura largura e posisionamento de janela
+
+    texto1 = Label(text='texto', font='40')  # font = fonte e altura
+    botão1 = Button(text='botao')
+
+    ########################################################################################################################
     prefix = "gb!"
     if message.content.startswith(prefix + "ban"):
         if not message.author.server_permissions.ban_members:
@@ -1148,8 +1165,6 @@ async def on_message(message):
             await client.add_reaction(message, '✂')
 
 
-	   if message.content.startswith("gb!k"):
-        await client.delete_message('Está funcionando o GitHub!')
 ################     ###################
 #                    #                 #
 #                    #                 #
@@ -1159,5 +1174,5 @@ async def on_message(message):
 #              #     #                 #
 ################     ###################
 
-client.run(os.environ.get("HEROKU.TOKEN"))
+os.environ.get("HEROKU.TOKEN")
 
