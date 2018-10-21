@@ -7,7 +7,6 @@ import requests
 import json
 import wikipedia
 wikipedia.exceptions
-from tkinter import*
 import io
 from pymongo import MongoClient
 from pyfiglet import Figlet
