@@ -769,6 +769,8 @@ async def on_message(message):
         await client.edit_channel_permissions(message.channel, membro, fechado)
         await client.send_message(message.channel, "O canal foi fechado para membros, satisfeito?!")
 ###############################################################################################
+
+
     ########################################################################################################################
     prefix = "gb!"
     if message.content.startswith(prefix + "ban"):
