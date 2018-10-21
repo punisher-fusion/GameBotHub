@@ -944,7 +944,7 @@ async def on_message(message):
 
 
     if message.content.startswith('gb!teste'):
-        embed = discord.Embed(colour=0xFF0000, description='Olá Mundo, estou vivo!')
+        embed = discord.Embed(colour=0xFF0000, description='A Heroku está funcionando!')
         await client.send_message(message.channel, embed=embed)
 
     elif message.content.startswith("gb!changegame"):
@@ -1146,9 +1146,7 @@ async def on_message(message):
             await client.send_message(message.channel, "**Tesoura!**")
             await client.add_reaction(message, '✂')
 
-	if message.content.startswith('gb!heroku'):
-		embed = discord.Embed(colour=0xFF0000, description='Conectado com GitHub e Heroku')
-		await client.send_message(message.channel, embed=embed)
+
 
 ################     ###################
 #                    #                 #
