@@ -1144,6 +1144,6 @@ async def on_message(message):
 #              #     #                 #
 ################     ###################
 
-client.login(os.environ.get("HEROKU.TOKEN"))
+client.run(os.environ.get("HEROKU.TOKEN"))
 
 
