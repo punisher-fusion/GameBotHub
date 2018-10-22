@@ -9,6 +9,7 @@ import wikipedia
 wikipedia.exceptions
 import io
 import os
+import pyfiglet
 
 tempo = []
 
@@ -144,8 +145,6 @@ async def on_message(message):
 
             )
 
-
-
             await client.send_message(message.channel, embed=embedinfo)
         except ImportError:
             await client.send_message(message.channel, 'Buguei!')
@@ -255,13 +254,7 @@ async def on_message(message):
             await client.send_message(message.channel, 'Você não tem permissões para fazer isso, só o Mestre Punisher '
                                                        'pode!')
 #################################################################################################
-    if message.content.lower().startswith('gb!limpar'):
-        if message.author.server_permissions.administrator:
-            limite = message.content[9:]
-            await client.purge_from(message.channel, limit=int(500))
-            await client.send_message(message.channel, 'Mensagens limpas por {}'.format(message.author.mention))
-        else:
-            await client.send_message(message.channel, "Sem permissão!")
+
 ############################################################################################################
     if message.content.lower().startswith('gb!vote'):
         votee = message.content[8:].strip()
@@ -334,28 +327,6 @@ async def on_message(message):
         embed.add_field(name='??Úsuario denunciado:', value=jogador.content)
         await client.send_message(canal, embed=embed)
 ##################################################################################################
-    if message.content.startswith('gb!entrar'):
-      try:
-        canal = message.author.voice.voice_channel
-        await client.join_voice_channel(canal)
-      except discord.errors.InvalidArgument:
-             await client.send_message(message.channel, "Você precisa esta conectado a um canal de voz!")
-
-    if message.content.startswith('gb!sair'):
-      try:
-        canaldevoz = client.voice_client_in(message.server)
-        await canaldevoz.disconnect()
-      except AttributeError:
-          await client.send_message(message.channel,"O bot não esta conectado em nenhum canal de voz!")
-
-
-
-
-
-
-
-
-#########################################################
     if message.content.startswith('gb!feed'):
         msg = message.content[6:]
         member = message.author
@@ -407,9 +378,6 @@ async def on_message(message):
 
         await client.send_message(message.channel, embed=embedbot)
 ###############################################################################
-
-##############################################################################
-
 
     if message.content.lower().startswith('gb!news'):
         reqnews = requests.get(
@@ -536,14 +504,14 @@ async def on_message(message):
             await client.send_message(message.channel, embed=embe)
 ######################################################################
     if message.content.startswith('gb!help'):
-        ajuda = discord.Embed(title="Comandos ZIKA do bot", description="Todos os comandos disponiveis do GameBot", color=0x660066)
-        ajuda.set_author(name="Oláá, sou GameBot, claro. ", icon_url="https://i.imgur.com/2GHenCV.png")
-        ajuda.set_thumbnail(url="https://i.imgur.com/b0xwEk1.png")
+        ajuda = discord.Embed(title="Comandos do GameBot!", description="Todos os comandos disponiveis do GameBot", color=0x660066)
+        ajuda.set_author(name="E ai, beleza?Sou GameBot! ", icon_url="https://imgur.com/a/R2L4g0a.png")
+        ajuda.set_thumbnail(url="https://imgur.com/a/R2L4g0a.png")
         ajuda.add_field(name="gb!gamelist", value="Lista de comandos de Jogos", inline=False)
         ajuda.add_field(name="gb!lista1", value="A Lista 1, a lista da Zoeira!", inline=False)
         ajuda.add_field(name="gb!lista2", value="Lista 2 , a lista de coisas inúteas!", inline=False)
         ajuda.add_field(name="gb!lista3", value="Lista 3 , para Moderadores e Administradores", inline=False)
-        ##ajuda.set_image(url="")
+        ajuda.set_image(url="https://imgur.com/a/R2L4g0a")
         ajuda.set_footer(
             text=">>Clique no ❌ para fechar<<             1/3")  ## icon_url="https://i.imgur.com/rdm3W9t.png")
 
@@ -569,10 +537,10 @@ async def on_message(message):
                 print("remove")
 
             if reaction.emoji == "⏩" and msg.id == msg_id and user == msg_user:
-                ajuda = discord.Embed(title="Comandos do bot", description="Todos os comandos disponiveis do BOT",
+                ajuda = discord.Embed(title="Comandos novos do GameBot", description="Todos os comandos disponiveis do Bot",
                                       color=0x660066)
-                ajuda.set_author(name="olá eu sou Mitsu 💜", icon_url="https://i.imgur.com/5R1LPwv.jpg")
-                ajuda.set_thumbnail(url="https://i.imgur.com/mntKcWT.jpg")
+                ajuda.set_author(name="E ai, denovo, beleza? 💜", icon_url="https://imgur.com/a/R2L4g0a.png")
+                ajuda.set_thumbnail(url="https://imgur.com/a/R2L4g0a.png")
                 ajuda.add_field(name="m!uptime", value="Mostra o tempo que o bot esta Online", inline=False)
                 ajuda.add_field(name="m!Ping", value="Ping do Bot", inline=False)
                 ajuda.add_field(name="m!serverinfo", value="Veja algumas informações do server", inline=False)
@@ -637,6 +605,7 @@ async def on_message(message):
         Embed = discord.Embed(color=0x000000, description="Tá aí, lista 2 , a lista de coisas inúteas!")
         Embed.add_field(name='gb!hora', value=". . . ", inline=False)
         Embed.add_field(name='gb!news', value=". . .", inline=False)
+        Embed.add_field(name='gb!wiki', value=". . .", inline=False)
         await client.send_message(message.channel, embed=Embed)
 
     if message.content.lower().startswith('gb!lista3'):
@@ -963,19 +932,7 @@ async def on_message(message):
         texto = f.renderText(mensagem)
         await client.send_message(message.channel, "`{}`".format(texto))
 
-    if message.content.lower().startswith('gb!save'):
-        await client.send_message(message.channel,"Foi salvo com sucesso")
 
-        canal = message.content[8:].replace('<', '').replace('#', '').replace('>', '')
-
-        serverid = {
-        "_id": message.server.id,
-        "cid": canal
-        }
-        try:
-            collection.update_one({'_id': message.server.id}, {'$set': {'cid': canal}})
-        except:
-            collection.insert_one(canal)
 ####################################################################################
     if message.content.lower().startswith("gb!corrida"):
         await client.send_message(message.channel,
