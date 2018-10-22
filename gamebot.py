@@ -1091,6 +1091,9 @@ async def on_message(message):
             await client.send_message(message.channel, "**Tesoura!**")
             await client.add_reaction(message, '✂')
 
+    if message.content.startswith('gb!teste'):
+        embed = discord.Embed(colour=0xFF0000, description='GitHub!')
+        await client.send_message(message.channel, embed=embed)
 
 ################     ###################
 #                    #                 #
