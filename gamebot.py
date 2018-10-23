@@ -9,7 +9,7 @@ import wikipedia
 wikipedia.exceptions
 import io
 import os
-import pyfiglet
+from pyfiglet import Figlet
 
 tempo = []
 
