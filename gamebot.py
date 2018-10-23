@@ -10,6 +10,7 @@ wikipedia.exceptions
 import io
 import os
 import pyfiglet
+import figlet
 
 tempo = []
 
@@ -737,7 +738,7 @@ async def on_message(message):
             userid = message.content[a:]
             user = message.server.get_member(userid)
             await client.send_message(message.channel,
-                                      "**O usuário(a) {} foi banido com sucesso do servidor.**".format(user))
+                                      "**O usuário(a) {} foi banido com sucesso do servidor.**".format(user.id))
             await client.ban(user, delete_message_days=1)
         except IndexError:
             await client.send_message(message.channel, "**Você deve especificar um usuario para banir!**")
