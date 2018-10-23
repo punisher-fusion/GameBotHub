@@ -928,7 +928,7 @@ async def on_message(message):
 
     if message.content.lower().startswith("gb!ascii"):
         f = Figlet(font='avatar')
-        mensagem = message.content.lower().replace(".ascii", "")
+        mensagem = message.content.lower().replace("gb!ascii", "")
         texto = f.renderText(mensagem)
         await client.send_message(message.channel, "`{}`".format(texto))
 
