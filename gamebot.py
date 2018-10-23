@@ -1090,7 +1090,7 @@ async def on_message(message):
 		
 @client.event
 async def on_member_join(member):
-        if member.server.id == '490601119211454465':
+        if member.server.id == '488783664251928586':
             cargo = discord.utils.get(member.server.roles, name="</NoRobot/>")
             await client.add_roles(member, cargo)
             registrar = discord.Embed(description="**Sistema feito para evitar a entrada de robôs!**", color=0x25c0b9)
