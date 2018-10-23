@@ -10,7 +10,6 @@ wikipedia.exceptions
 import io
 import os
 import pyfiglet
-import figlet
 
 tempo = []
 
@@ -1048,15 +1047,6 @@ async def on_message(message):
         embeddad = discord.Embed(title='🎲 Dado', description=' Joguei o dado, o resultado foi :   {}'.format(choice),
                                  colour=0x000000)
         await client.send_message(message.channel, embed=embeddad)
-
-    if message.content.lower().startswith('gb!tabuada'):
-
-        while True:
-            a = input()
-            num = 1
-            while num != 11:
-                print(f'{a} x {num} = {int(a) * num}')
-                num += 1
 
     if message.content.lower().startswith('gb!gerarinvite'):
         crt = message.content[14:]
