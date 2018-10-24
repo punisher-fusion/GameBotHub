@@ -1096,11 +1096,11 @@ async def on_member_join(member):
             registrar = discord.Embed(description="**Sistema feito para evitar a entrada de robôs!**", color=0x25c0b9)
             registrar.add_field(name='Você é um Robô? :robot:', value='Clique no ✅ para você se verificar')
             registrar.set_footer(icon_url=member.server.icon_url, text="Você é um Robô? 🤖")
-            registrar.set_author(icon_url=member.server.icon_url, name='GameBot', )
+            registrar.set_author(icon_url=member.server.icon_url, name='GameBot' )
             reg = await client.send_message(message.channel, embed=registrar)
             await client.add_reaction(reg, "✅")
 			
-			
+			#mudar server por channel
 ################     ###################
 #                    #                 #
 #                    #                 #
