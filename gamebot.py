@@ -1087,7 +1087,7 @@ async def on_message(message):
         await client.send_message(message.channel, embed=embed)
 
 		
-    if message.content.lower().startswith('gb!avatarb'):
+    if message.content.lower().startswith('gb!botimg'):
         try:
             member = client.user
             embed = discord.Embed(title="", color=0x000000,
