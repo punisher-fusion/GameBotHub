@@ -1063,6 +1063,21 @@ async def on_message(message):
         embed.set_footer(icon_url=message.server.icon_url, text="Gerador de Invite")
         await client.send_message(message.author, embed=embed)
 
+    if message.content.lower().startswith("gb!removerole"):
+        if message.author.server_permissions.manage_roles:
+            try:
+                a = message.mentions[0]
+                b = str(message.content).split()
+                c = b[2]
+                d = discord.Object(id="{}".format(int(str(c).strip("<>@&"))))
+                await client.remove_roles(a, d)
+                embed12 = discord.Embed(title="Cargo Removido!", description=f"**O cargo {c} foi removido de {a} com sucesso!**" , color=0x00FF00)
+                await client.send_message(message.channel, embed=embed12)
+            except IndexError:
+                await client.send_message(message.channel, "**Você precisa mencionar um usuário**")
+        else:
+            await client.send_message(message.channel,"**{} Já falei só aqueles que eu aceito podem mandar em mim!**".format(message.author))
+
     if message.content.lower().startswith('gb!ppt'):
         escolha = random.randint(1,4)
 
@@ -1120,21 +1135,7 @@ async def on_message(message):
             embed.set_image(url=member.avatar_url)
             embed.set_footer(text="Copyright © 2018 GameBot")
             await client.send_message(message.channel, embed=embed) 
-			
-	if message.content.lower().startswith("gb!removerole"):
-        if message.author.server_permissions.manage_roles:
-            try:
-                a = message.mentions[0]
-                b = str(message.content).split()
-                c = b[2]
-                d = discord.Object(id="{}".format(int(str(c).strip("<>@&"))))
-                await client.remove_roles(a, d)
-                embed12 = discord.Embed(title="Cargo Removido!", description=f"**O cargo {c} foi removido de {a} com sucesso!**" , color=0x00FF00)
-                await client.send_message(message.channel, embed=embed12)                   
-            except IndexError:
-                await client.send_message(message.channel, "**Você precisa mencionar um usuário**")
-        else:
-            await client.send_message(message.channel,"**{} Já falei só aqueles que eu aceito podem mandar em mim!**".format(message.author))
+
 	
 @client.event
 async def on_member_join(member):
