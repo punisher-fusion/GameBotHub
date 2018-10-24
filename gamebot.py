@@ -1087,7 +1087,7 @@ async def on_message(message):
         await client.send_message(message.channel, embed=embed)
 
 		
-    if message.content.lower().startswith('p!avatar'):
+    if message.content.lower().startswith('gb!avatarb'):
         try:
             member = client.user
             embed = discord.Embed(title="", color=0x000000,
@@ -1103,6 +1103,23 @@ async def on_message(message):
             embed.set_image(url=member.avatar_url)
             embed.set_footer(text="Copyright © 2018 GameBot")
             await client.send_message(message.channel, embed=embed)
+			
+    if message.content.lower().startswith('gb!avatar'):
+        try:
+            member = message.mentions[0]
+            embed = discord.Embed(title="", color=0x000000,
+                                description='**Clique** [Aqui](' + member.avatar_url + ') **Para acessar o link do avatar de** **{}**! '.format(
+                                    member.name))
+            embed.set_image(url=member.avatar_url)
+            await client.send_message(message.channel, embed=embed)
+        except:
+            member = message.author
+            embed = discord.Embed(title='Seu avatar:'.format(member.name), color=0x000000,
+                                description='**Clique** [Aqui](' + member.avatar_url + ') **Para acessar o link do seu Avatar**  '.format(
+                                    member.name))
+            embed.set_image(url=member.avatar_url)
+            embed.set_footer(text="Copyright © 2018 GameBot")
+            await client.send_message(message.channel, embed=embed) 
 	
 @client.event
 async def on_member_join(member):
