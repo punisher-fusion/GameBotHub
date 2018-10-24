@@ -1101,7 +1101,7 @@ async def on_message(message):
                                 description='**Clique** [Aqui](' + member.avatar_url + ') **Para acessar o link do seu Avatar**  '.format(
                                     member.name))
             embed.set_image(url=member.avatar_url)
-            embed.set_footer(text="Copyright © 2018 IsaqueSki")
+            embed.set_footer(text="Copyright © 2018 GameBot")
             await client.send_message(message.channel, embed=embed)
 	
 @client.event
