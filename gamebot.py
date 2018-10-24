@@ -1089,7 +1089,7 @@ async def on_message(message):
 		
     if message.content.lower().startswith('p!avatar'):
         try:
-            member = message.mentions[0]
+            member = client.user
             embed = discord.Embed(title="", color=0x000000,
                                 description='**Clique** [Aqui](' + member.avatar_url + ') **Para acessar o link do avatar de** **{}**! '.format(
                                     member.name))
