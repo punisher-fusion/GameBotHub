@@ -11,6 +11,7 @@ import io
 import os
 from pyfiglet import Figlet
 
+
 tempo = []
 
 try:
@@ -1134,20 +1135,161 @@ async def on_message(message):
                                     member.name))
             embed.set_image(url=member.avatar_url)
             embed.set_footer(text="Copyright © 2018 GameBot")
-            await client.send_message(message.channel, embed=embed) 
+            await client.send_message(message.channel, embed=embed)
 
-	
+    if message.content.lower().startswith("p!social"):
+        user = message.author.name
+        horario = datetime.datetime.now().strftime("%H:%M:%S")
+        embe = discord.Embed()
+        embe = discord.Embed(title="GameBot", description="Dados sobre nossas Redes Sociais: ",
+                             color=0x690FC3)
+        embe.add_field(name="<:site:505498310698860554>Site:", value="https://bit.ly/2qbsHh6", inline=True)
+        embe.add_field(name="<:twitter:504803235383476234>Twiter:", value="Em breve", inline=True)
+        embe.add_field(name="<:gmail:504800867589947393>Contato:", value="gamebotsuporte@gmail.com", inline=False)
+        embe.set_footer(text="Comando requisitado por {} as {}!".format(user, horario))
+        await client.send_message(message.channel, embed=embe)
+
+    if message.content.startswith('gb!membros'):
+        user = message.author.name
+        horario = datetime.datetime.now().strftime("%H:%M:%S")
+        membros_embed = discord.Embed(title="\n", description="Abaixo está a quantidade de membros no servidor!",
+                                      color=0xFF8000)
+        membros_embed.set_thumbnail(url=message.server.icon_url)
+        membros_embed.set_footer(text="Comando requisitado por {} • Hoje às {}".format(user, horario))
+        membros_embed.add_field(name="Membros no servidor:", value=len(message.server.members), inline=True)
+        await client.send_message(message.channel, embed=membros_embed)
+##################################################################################################
+    if message.content.lower().startswith('gb!rcargo'):
+        embed1 =discord.Embed(
+            title='Escolha seu Cargo!',
+            color=COR,
+            description='🔴Programação Python\n'
+                        '🔵Programação Java Script\n'
+                        '🏷Programação HTML5\n'
+                        '☣Programação C++\n'
+                        '🎃</Desenhista/>\n'
+                        '🎗</Artista Gráfico/>\n'
+                        '🎖</Observador/>\n',
+            )
+
+        botmsg = await client.send_message(message.channel, embed=embed1)
+        await client.add_reaction(botmsg, "🔴")
+        await client.add_reaction(botmsg,"🔵")
+        await client.add_reaction(botmsg, "🏷")
+        await client.add_reaction(botmsg,"☣")
+        await client.add_reaction(botmsg, "🎃")
+        await client.add_reaction(botmsg,"🎗")
+        await client.add_reaction(botmsg, "🎖")
+
+        global msg_id
+        msg_id = botmsg.id
+
+        global msg_user
+        msg_user = message.author
+
+@client.event
+async def on_reaction_add(reaction, user):
+    msg = reaction.message
+
+    if reaction.emoji == "🔴" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "Programação Python", msg.server.roles)
+        await client.add_roles(user, role)
+
+    if reaction.emoji == "🔵" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "Programação Java Script", msg.server.roles)
+        await client.add_roles(user, role)
+
+    if reaction.emoji == "🏷" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "Programação HTML5", msg.server.roles)
+        await client.add_roles(user, role)
+
+    if reaction.emoji == "☣" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "Programação C++", msg.server.roles)
+        await client.add_roles(user, role)
+
+    if reaction.emoji == "🎃" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "</Desenhista/>", msg.server.roles)
+        await client.add_roles(user, role)
+
+    if reaction.emoji == "🎗" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "</Artista Gráfico/>", msg.server.roles)
+        await client.add_roles(user, role)
+
+
+    if reaction.emoji == "🎖" and msg.id == msg_id:  # and user == msg_user:
+        role = discord.utils.find(lambda r: r.name == "</Observador/>", msg.server.roles)
+        await client.add_roles(user, role)
+
+@client.event
+async def on_reaction_remove(reaction, user):
+    msg = reaction.message
+
+    if reaction.emoji == "🔴" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "Programação Python", msg.server.roles)
+     await client.remove_roles(user, role)
+
+    if reaction.emoji == "🔵" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "Programação Java Script", msg.server.roles)
+     await client.remove_roles(user, role)
+
+    if reaction.emoji == "🏷" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "Programação HTML5", msg.server.roles)
+     await client.remove_roles(user, role)
+
+    if reaction.emoji == "☣" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "Programação C++", msg.server.roles)
+     await client.remove_roles(user, role)
+
+    if reaction.emoji == "🎃" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "</Desenhista/>", msg.server.roles)
+     await client.remove_roles(user, role)
+
+    if reaction.emoji == "🎗" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "</Artista Gráfico/>", msg.server.roles)
+     await client.remove_roles(user, role)
+
+    if reaction.emoji == "🎖" and msg.id == msg_id: #and user == msg_user:
+     role = discord.utils.find(lambda r: r.name == "</Observador/>", msg.server.roles)
+     await client.remove_roles(user, role)
+
+
 @client.event
 async def on_member_join(member):
-        if member.server.id == '488783664251928586':
-            cargo = discord.utils.get(member.server.roles, name="</NoRobot/>")
-            await client.add_roles(member, cargo)
-            registrar = discord.Embed(description="**Sistema feito para evitar a entrada de robôs!**", color=0x25c0b9)
-            registrar.add_field(name='Você é um Robô? :robot:', value='Clique no ✅ para você se verificar')
-            registrar.set_footer(icon_url=member.server.icon_url, text="Você é um Robô? 🤖")
-            registrar.set_author(icon_url=member.server.icon_url, name='GameBot' )
-            reg = await client.send_message(message.channel, embed=registrar)
-            await client.add_reaction(reg, "✅")
+    canal = client.get_channel('490601119211454465')
+    url = requests.get(member.avatar_url)
+    avatar = Image.open(BytesIO(url.content))
+    avatar = avatar.resize((150, 150));
+    bigavatar = (avatar.size[0] * 3, avatar.size[1] * 3)
+    mascara = Image.new('L', bigavatar, 0)
+    recortar = ImageDraw.Draw(mascara)
+    recortar.ellipse((0, 0) + bigavatar, fill=255)
+    mascara = mascara.resize(avatar.size, Image.ANTIALIAS)
+    avatar.putalpha(mascara)
+
+    saida = ImageOps.fit(avatar, mascara.size, centering=(0.5, 0.5))
+    saida.putalpha(mascara)
+    saida.save('avatar.png')
+
+    img = Image.open('bemvindo.png')
+    fonte = ImageFont.truetype('bravada-arma.ttf', 52)
+    escrever = ImageDraw.Draw(img)
+    escrever.text(xy=(180, 160), text=member.name, fill=(3, 9, 254), font=fonte)
+    img.paste(avatar, (8, 52), avatar)
+    img.save('bv.png')
+    await client.send_file(canal, 'bv.png')
+
+
+#@client.event
+#async def on_member_join(member):
+        #if member.server.id == '488783664251928586':
+            #cargo = discord.utils.get(member.server.roles, name="</NoRobot/>")
+            #await client.add_roles(member, cargo)
+            #registrar = discord.Embed(description="**Sistema feito para evitar a entrada de robôs!**", color=0x25c0b9)
+            #registrar.add_field(name='Você é um Robô? :robot:', value='Clique no ✅ para você se verificar')
+            #registrar.set_footer(icon_url=member.server.icon_url, text="Você é um Robô? 🤖")
+            #registrar.set_author(icon_url=member.server.icon_url, name='GameBot' )
+            #reg = await client.send_message(message.channel, embed=registrar)
+            #await client.add_reaction(reg, "✅")
 			
 			#mudar server por channel
 ################     ###################
