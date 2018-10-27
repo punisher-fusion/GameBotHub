@@ -21,7 +21,8 @@ except Exception as e:
 
 players = {}
 COR = 0xF7FE2E
-
+msg_id = None
+msg_user = None
 COR =0x690FC3
 msg_id = None
 msg_user = None
