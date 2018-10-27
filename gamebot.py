@@ -1138,7 +1138,7 @@ async def on_message(message):
             embed.set_footer(text="Copyright © 2018 GameBot")
             await client.send_message(message.channel, embed=embed)
 
-    if message.content.lower().startswith("p!social"):
+    if message.content.lower().startswith("gb!social"):
         user = message.author.name
         horario = datetime.datetime.now().strftime("%H:%M:%S")
         embe = discord.Embed()
